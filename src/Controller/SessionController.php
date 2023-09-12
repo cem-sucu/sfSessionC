@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Session;
+use App\Repository\SessionRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -11,11 +12,12 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class SessionController extends AbstractController
 {
     #[Route('/session', name: 'app_session')]
-    // EntityManagerInterface on l'importe
-    public function index(EntityManagerInterface $entityManager): Response
+    // SessionRepository on l'importe
+    public function index(SessionRepository $sessionRepository): Response
+
+
     {
-        // j'oublie pas de importer Session : App\Entity
-        $sessions =$entityManager->getRepository(Session::class)->findAll();
+        $sessions = $sessionRepository->findAll();
         return $this->render('session/index.html.twig', [
             'sessions' => $sessions,
         ]);
