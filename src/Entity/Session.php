@@ -66,6 +66,12 @@ class Session
         return $this->dateDebut;
     }
 
+    // ici pour la date lorsque l'on formate ce n'est plus ?\DateTimeInterface, mais ?string
+    public function getDateDebutFr(): ?string
+    {
+        return $this->dateDebut->format("d-m-Y");
+    }
+
     public function setDateDebut(\DateTimeInterface $dateDebut): static
     {
         $this->dateDebut = $dateDebut;
@@ -76,6 +82,11 @@ class Session
     public function getDateFin(): ?\DateTimeInterface
     {
         return $this->dateFin;
+    }
+    //methode dateFin modifié
+    public function getDateFinFr(): ?string
+    {
+        return $this->dateFin->format("d-m-Y");
     }
 
     public function setDateFin(\DateTimeInterface $dateFin): static
@@ -164,6 +175,6 @@ class Session
     }
 
     public function __toString(){
-        return "La formation ".$this->nom." (".$this->nbrePlace." places max)";
+        return "La formation ".$this->nom." (".$this->nbrePlace." places max, débutera du :".$this->getDateDebutFr() ." au ".$this->getDateFinFr();
     }
 }
