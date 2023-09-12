@@ -16,6 +16,10 @@ class Categorie
     #[ORM\Column(length: 50)]
     private ?string $intitulee = null;
 
+    #[ORM\ManyToOne(inversedBy: 'categories')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Module $module = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -29,6 +33,18 @@ class Categorie
     public function setIntitulee(string $intitulee): static
     {
         $this->intitulee = $intitulee;
+
+        return $this;
+    }
+
+    public function getModule(): ?Module
+    {
+        return $this->module;
+    }
+
+    public function setModule(?Module $module): static
+    {
+        $this->module = $module;
 
         return $this;
     }
