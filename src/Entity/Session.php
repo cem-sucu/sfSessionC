@@ -162,4 +162,8 @@ class Session
 
         return $this;
     }
+
+    public function __toString(){
+        return "La formation ".$this->nom." (".$this->nbrePlace." places max)";
+    }
 }
