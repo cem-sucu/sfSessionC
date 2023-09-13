@@ -180,16 +180,16 @@ class Session
 
     // pour l'afficher en tableau
     public function toArray()
-{
-    return [
-        'sessions' => [
-            'nom' => $this->nom,
-            'nbrePlace' => $this->nbrePlace,
-            'dateDebut' => $this->getDateDebutFr(),
-            'dateFin' => $this->getDateFinFr(),
-        ]
-    ];
-}
+    {
+        return [
+            'sessions' => [
+                'nom' => $this->nom,
+                'nbrePlace' => $this->nbrePlace,
+                'dateDebut' => $this->getDateDebutFr(),
+                'dateFin' => $this->getDateFinFr(),
+            ]
+        ];
+    }
 
     //la methode pour claculer le nbre de place restant en fonction du nbre de place dispo
     public function getNbrePlacesRestantes(): ?int
@@ -198,5 +198,10 @@ class Session
         return $nbrePlacesRestantes > 0 ? $nbrePlacesRestantes :0;
     } 
 
+    // je prepare deja la methode pour gerer plustard les places reservé en fonction des stagiaire qui s'inscrit 
+    public function getNbrePlacesReservees(): int
+    {
+        return count($this->stagiaires);
+    }
 
 }

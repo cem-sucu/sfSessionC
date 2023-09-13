@@ -9,22 +9,27 @@
         <thead>
             <tr>
                 <th>Nom</th>
-                <th>Nombre de places</th>
-                <th>Nombre de places restantes</th>
                 <th>Date de début</th>
                 <th>Date de fin</th>
+                <th>Nombre de places</th>
+                <th>Places réservées</th>
+                <th>Nombre de places restantes</th>
+                <th>Détails programme</th>
             </tr>
         </thead>
         <tbody>
             {% for session in sessions %}
                 <tr>
                     <td>{{ session.nom }}</td>
-                    <td>{{ session.nbrePlace }}</td>
-                    <td>{{ session.getNbrePlacesRestantes() }}</td>
                     <td>{{ session.dateDebut|date("d-m-Y") }}</td>
                     <td>{{ session.dateFin|date("d-m-Y") }}</td>
+                    <td>{{ session.nbrePlace }}</td>
+                    <td>{{ session.getNbrePlacesReservees() }}</td>
+                    <td>{{ session.getNbrePlacesRestantes() }}</td>
+                    <td><i class="fa-regular fa-rectangle-list"></i></td>
                 </tr>
             {% endfor %}
         </tbody>
     </table>
+
 {% endblock %}
