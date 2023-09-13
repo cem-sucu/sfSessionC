@@ -5,7 +5,7 @@
 {% block body %}
     <h1>Liste des formations</h1>
 
-    {% for session in sessions %}
-        {{ session }}
+    {% for formation in formations %}
+        {{ formation | raw }} 
     {% endfor %}
 {% endblock %}

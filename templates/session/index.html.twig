@@ -5,8 +5,26 @@
 {% block body %}
     <h1>Liste des Sessions</h1>
 
-    {% for session in sessions %}
-        <li>{{ session }}</li>
-        
-    {% endfor %}
+    <table>
+        <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Nombre de places</th>
+                <th>Nombre de places restantes</th>
+                <th>Date de début</th>
+                <th>Date de fin</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for session in sessions %}
+                <tr>
+                    <td>{{ session.nom }}</td>
+                    <td>{{ session.nbrePlace }}</td>
+                    <td>{{ session.getNbrePlacesRestantes() }}</td>
+                    <td>{{ session.dateDebut|date("d-m-Y") }}</td>
+                    <td>{{ session.dateFin|date("d-m-Y") }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 {% endblock %}

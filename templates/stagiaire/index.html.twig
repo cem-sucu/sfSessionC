@@ -1,12 +1,11 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello StagiaireController!{% endblock %}
+{% block title %}Liste des Stagiaires{% endblock %}
 
 {% block body %}
 
     {% for stagiaire in stagiaires %}
         <h2>FICHE STAGIAIRE</h2>
-        {{ stagiaire }} <br>
-        
+        {{ stagiaire | raw}} <br> <!--le filter | raw , permet de gerer les balise que l'on peut eventuellement etre amené a utiliser dans une toString par exemple-->        
     {% endfor %}
 {% endblock %}

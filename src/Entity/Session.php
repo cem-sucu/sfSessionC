@@ -174,7 +174,29 @@ class Session
         return $this;
     }
 
-    public function __toString(){
-        return "La formation ".$this->nom." (".$this->nbrePlace." places max, débutera du :".$this->getDateDebutFr() ." au ".$this->getDateFinFr();
-    }
+    // public function __toString(){
+    //     return "La formation <td>".$this->nom."</td> (".$this->nbrePlace." places max, débutera du :".$this->getDateDebutFr() ." au ".$this->getDateFinFr();
+    // }
+
+    // pour l'afficher en tableau
+    public function toArray()
+{
+    return [
+        'sessions' => [
+            'nom' => $this->nom,
+            'nbrePlace' => $this->nbrePlace,
+            'dateDebut' => $this->getDateDebutFr(),
+            'dateFin' => $this->getDateFinFr(),
+        ]
+    ];
+}
+
+    //la methode pour claculer le nbre de place restant en fonction du nbre de place dispo
+    public function getNbrePlacesRestantes(): ?int
+    {
+        $nbrePlacesRestantes = $this->nbrePlace - count($this->stagiaires);
+        return $nbrePlacesRestantes > 0 ? $nbrePlacesRestantes :0;
+    } 
+
+
 }

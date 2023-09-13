@@ -37,6 +37,9 @@ class Stagiaire
     #[ORM\ManyToMany(targetEntity: Session::class, mappedBy: 'stagiaires')]
     private Collection $sessions;
 
+    #[ORM\Column(length: 50)]
+    private ?string $sexe = null;
+
     public function __construct()
     {
         $this->sessions = new ArrayCollection();
@@ -74,6 +77,15 @@ class Stagiaire
     public function getDateNaissance(): ?\DateTimeInterface
     {
         return $this->dateNaissance;
+    }
+    public function getDateNaissanceFr(): ?string
+    {
+        $dateNaissance = $this->dateNaissance;
+        $dateActuelle = new \DateTime();
+        $difference = $dateActuelle->diff($dateNaissance);
+        $age = $difference->y;
+        $dateFormatee = $this->dateNaissance->format("d-m-Y");
+        return $dateFormatee . " (" . $age . " ans)";
     }
 
     public function setDateNaissance(\DateTimeInterface $dateNaissance): static
@@ -148,6 +160,24 @@ class Stagiaire
 
     public function __toString()
     {
-        return $this->nom ." ".$this->prenom;
+        return $this->nom." ".$this->prenom.
+                "<br><strong>Sexe :</strong>".$this->sexe
+                ."<br><strong>Date de naissance :</strong> ".$this->getDateNaissanceFr()
+                ."<br><strong>Ville :</strong> ".$this->ville
+                ."<br><strong>Email :</strong>".$this->email
+                ."<br><strong>Téléphone :</strong>".$this->telephone;
+    }
+
+    //ajouter par apres avec une 2ieme migration ver
+    public function getSexe(): ?string
+    {
+        return $this->sexe;
+    }
+
+    public function setSexe(string $sexe): static
+    {
+        $this->sexe = $sexe;
+
+        return $this;
     }
 }
