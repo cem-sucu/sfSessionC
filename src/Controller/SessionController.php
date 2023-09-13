@@ -23,3 +23,4 @@ class SessionController extends AbstractController
         ]);
     }
 }
+
