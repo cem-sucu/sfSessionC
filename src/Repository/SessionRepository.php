@@ -65,7 +65,7 @@ public function findNonInscrits($session_id)
     // on obtient donc les stagaiire non inscrit pour une session définie
     $sub->select('st')
         ->from('App\Entity\stagiaire', 'st')
-        ->where($sub->expr()->notIn('st.id', $sq->getDQL()))
+        ->where($sub->expr()->notIn('st.id', $qb->getDQL()))
         // requete parametré
         ->setParameter('id', $session_id)
         //trier la liste des stagaire sur le nom de famille
