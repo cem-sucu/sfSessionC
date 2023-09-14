@@ -4,10 +4,20 @@
 
 {% block body %}
 
-   <h2>La liste des stagiaires inscrits</h2>
-    {% for stagiaire in session.stagiaires %}
-        {{ stagiaire }} <br>
-    {% endfor %}
+<div class="stagiaire">
+    <div class="stagiaireInscrit">
+        <h2>La liste des stagiaires inscrits</h2>
+        {% for stagiaire in session.stagiaires %}
+            {{ stagiaire }} <br>
+        {% endfor %}
+    </div>
+    <div class="stagiaireNonInscrit">
+        <h2>La liste des non inscrit</h3>
+        {% for stagiaire in nonInscrits %}
+            {{ stagiaire.nom }} {{ stagiaire.prenom}} <br>
+        {% endfor %}
+    </div>
+</div>
 
     <h1>Session {{ session.nom }}</h1>
     <table>
