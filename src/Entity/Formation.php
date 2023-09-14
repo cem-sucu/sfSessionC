@@ -51,6 +51,13 @@ class Formation
         return $this->qualificationTitre;
     }
 
+    // une ternaire : si c'est true "formation qualifiante" sinon "pas qualifiante"
+    public function isQualificationTitreV(): ?string
+    {
+        return $this->isQualificationTitreV ? " est une formation qualifiante" : " n'est pas qualifiante";
+    }
+
+
     public function setQualificationTitre(bool $qualificationTitre): static
     {
         $this->qualificationTitre = $qualificationTitre;
@@ -90,6 +97,6 @@ class Formation
 
     public function __toString()
     {
-       return $this->nom ;
+       return $this->nom  ;
     }
 }

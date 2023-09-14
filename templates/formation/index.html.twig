@@ -6,6 +6,6 @@
     <h1>Liste des formations</h1>
 
     {% for formation in formations %}
-        {{ formation | raw }} 
+        <a href="{{ path('show_formation', {'id': formation.id}) }}">{{ formation | raw }}</a> <br><br>
     {% endfor %}
 {% endblock %}
