@@ -160,6 +160,11 @@ class Stagiaire
 
     public function __toString()
     {
+        return $this->nom." ".$this->prenom;
+    }
+
+    public function getShow()
+    {
         return $this->nom." ".$this->prenom.
                 "<br><strong>Sexe :</strong>".$this->sexe
                 ."<br><strong>Date de naissance :</strong> ".$this->getDateNaissanceFr()

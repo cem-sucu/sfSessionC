@@ -4,8 +4,8 @@
 
 {% block body %}
 
+    <h2>FICHE STAGIAIRE</h2> 
     {% for stagiaire in stagiaires %}
-        <h2>FICHE STAGIAIRE</h2>
-        {{ stagiaire | raw}} <br> <!--le filter | raw , permet de gerer les balise que l'on peut eventuellement etre amené a utiliser dans une toString par exemple-->        
+        <a href="{{ path('show_stagiaire', {'id': stagiaire.id}) }}">{{ stagiaire | raw}}</a> <br><br> <!--le filter | raw , permet de gerer les balise que l'on peut eventuellement etre amené a utiliser dans une toString par exemple-->        
     {% endfor %}
 {% endblock %}
