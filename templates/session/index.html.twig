@@ -26,7 +26,7 @@
                     <td>{{ session.nbrePlace }}</td>
                     <td>{{ session.getNbrePlacesReservees() }}</td>
                     <td>{{ session.getNbrePlacesRestantes() }}</td>
-                    <td><i class="fa-regular fa-rectangle-list"></i></td>
+                    <td><a href="{{ path('show_session', {'id':session.id})}}"><i class="fa-regular fa-rectangle-list"></a></i></td>
                 </tr>
             {% endfor %}
         </tbody>
