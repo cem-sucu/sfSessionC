@@ -31,15 +31,23 @@
 
     <div class="stagiaire">
         <div class="stagiaireInscrit">
+            {% for message in app.flashes('success-message') %}
+                {{ message }}
+            {% endfor %}
             <h2>La liste des stagiaires inscrits</h2>
             {% for stagiaire in session.stagiaires %}
                 {{ stagiaire }} <br>
             {% endfor %}
+          
         </div>
         <div class="stagiaireNonInscrit">
-            <h2>La liste des non inscrit</h3>
+            <h2>La liste des non inscrits</h2>
             {% for stagiaire in nonInscrits %}
-                {{ stagiaire.nom }} {{ stagiaire.prenom}} <br>
+                <form method="post" action="{{ path('show_session', { 'id': session.id }) }}">
+                    <input type="hidden" name="stagiaire_id" value="{{ stagiaire.id }}">
+                    {{ stagiaire.nom }} {{ stagiaire.prenom }}
+                    <button type="submit">Ajouter</button>
+                </form>
             {% endfor %}
         </div>
     </div> <br> <br>
