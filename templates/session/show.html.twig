@@ -28,29 +28,37 @@
         </tbody>
     </table>
 
-
+        {% for message in app.flashes('success-message') %}
+            <div class="success-message">
+                {{ message }}
+            </div>
+        {% endfor %}
     <div class="stagiaire">
         <div class="stagiaireInscrit">
-            {% for message in app.flashes('success-message') %}
-                {{ message }}
-            {% endfor %}
             <h2>La liste des stagiaires inscrits</h2>
             {% for stagiaire in session.stagiaires %}
-                {{ stagiaire }} <br>
+                {{ stagiaire.nom }} {{ stagiaire.prenom }}
+                <form method="post" action="{{ path('show_session', { 'id': session.id }) }}">
+                    <input type="hidden" name="stagiaire_id" value="{{ stagiaire.id }}">
+                    <input type="hidden" name="action" value="desinscrire"> <!-- Champ d'action pour la désinscription -->
+                    <button type="submit">Désinscrire</button>
+                </form>
+                <br>
             {% endfor %}
-          
         </div>
         <div class="stagiaireNonInscrit">
             <h2>La liste des non inscrits</h2>
             {% for stagiaire in nonInscrits %}
                 <form method="post" action="{{ path('show_session', { 'id': session.id }) }}">
                     <input type="hidden" name="stagiaire_id" value="{{ stagiaire.id }}">
+                    <input type="hidden" name="action" value="inscrire"> <!-- Champ d'action pour l'inscription -->
                     {{ stagiaire.nom }} {{ stagiaire.prenom }}
                     <button type="submit">Ajouter</button>
                 </form>
             {% endfor %}
         </div>
-    </div> <br> <br>
+    </div>
+     <br> <br>
 
 
     <div class="module">
@@ -68,5 +76,6 @@
         </div>
     </div>
 
+      
 
 {% endblock %}

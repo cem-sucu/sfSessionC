@@ -1,5 +1,6 @@
 .success-message{
-    color: rgb(65, 104, 6);
+    color: white;
+    background-color: green;
 }
 .error-message{
     color: brown;
