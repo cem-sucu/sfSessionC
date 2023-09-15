@@ -204,4 +204,11 @@ class Session
         return count($this->stagiaires);
     }
 
+    // methode pour savoir si on a plus de palce disponible
+    public function inscriptionPossible(): bool
+    {
+        return $this->getNbrePlacesRestantes() > 0;
+    }
+
+
 }

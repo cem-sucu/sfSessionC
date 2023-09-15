@@ -48,15 +48,20 @@
         </div>
         <div class="stagiaireNonInscrit">
             <h2>La liste des non inscrits</h2>
-            {% for stagiaire in nonInscrits %}
-                <form method="post" action="{{ path('show_session', { 'id': session.id }) }}">
-                    <input type="hidden" name="stagiaire_id" value="{{ stagiaire.id }}">
-                    <input type="hidden" name="action" value="inscrire"> <!-- Champ d'action pour l'inscription -->
-                    {{ stagiaire.nom }} {{ stagiaire.prenom }}
-                    <button type="submit">Ajouter</button>
-                </form>
-            {% endfor %}
+            {% if session.stagiaires | length == session.nbrePlace %}
+                <p>Plus de place</p>
+            {% else %}
+                {% for stagiaire in nonInscrits %}
+                    <form method="post" action="{{ path('show_session', { 'id': session.id }) }}">
+                        <input type="hidden" name="stagiaire_id" value="{{ stagiaire.id }}">
+                        <input type="hidden" name="action" value="inscrire"> <!-- Champ d'action pour l'inscription -->
+                        {{ stagiaire.nom }} {{ stagiaire.prenom }}
+                            <button type="submit">Ajouter</button>
+                    </form>
+                {% endfor %}
+            {% endif %}
         </div>
+        
     </div>
      <br> <br>
 

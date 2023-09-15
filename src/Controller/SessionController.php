@@ -86,9 +86,12 @@ class SessionController extends AbstractController
             }
         }
     
+        // Récupère la liste des stagiaires non inscrits à la session
         $nonInscrits = $sessionRepository->findNonInscrits($session->getId());
+         // Récupère la liste des modules disponibles pour la session
         $moduleDispo = $sessionRepository->findModuleDispo($session->getId());
     
+        // return la vue session/show.html.twig
         return $this->render('session/show.html.twig', [
             'session' => $session,
             'nonInscrits' => $nonInscrits,
