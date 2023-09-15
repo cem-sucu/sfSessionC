@@ -6,9 +6,11 @@
         <h2>Détail du stagiaire</h2>
         {{ stagiaire.getShow() | raw}} <br> <!--le filter | raw , permet de gerer les balise que l'on peut eventuellement etre amené a utiliser dans une toString par exemple-->        
 
-        <h2>La liste de session auxquels il s'est inscrit</h2>
+        <h2>Sessions prévus</h2>
+        <ul>
         {% for session in stagiaire.sessions %}
-                {{ session.nom}}
+        <li class="sessionPrevu">{{ session.nom}}</li>
         {% endfor %}
+        </ul> 
 
 {% endblock %}
