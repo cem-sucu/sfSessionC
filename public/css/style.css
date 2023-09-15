@@ -2,8 +2,10 @@
     color: rgb(65, 104, 6);
 }
 
-.stagiaire{
+.stagiaire, .module{
     display: flex;
+    border: 1px solid black;
     flex-direction: row;
     justify-content: space-around;
 }
+

@@ -21,13 +21,17 @@ class SessionController extends AbstractController
         ]);
     }
 
+    // pour afficher la liste des nonInscrits
+    // et pour afficher les module dispo mais pas présent dans la session
     #[Route('/session/{id}', name: 'show_session')]
     public function show(Session $session, SessionRepository $sr): Response
     {
         $nonInscrits = $sr->findNonInscrits($session->getId());
+        $moduleDispo = $sr->findModuleDispo($session->getId());
         return $this->render('session/show.html.twig', [
             'session'=>$session,
-            'nonInscrits' => $nonInscrits
+            'nonInscrits' => $nonInscrits,
+            'moduleDispo' => $moduleDispo,
         ]);
     }
 }

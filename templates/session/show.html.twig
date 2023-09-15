@@ -4,48 +4,61 @@
 
 {% block body %}
 
-<div class="stagiaire">
-    <div class="stagiaireInscrit">
-        <h2>La liste des stagiaires inscrits</h2>
-        {% for stagiaire in session.stagiaires %}
-            {{ stagiaire }} <br>
-        {% endfor %}
-    </div>
-    <div class="stagiaireNonInscrit">
-        <h2>La liste des non inscrit</h3>
-        {% for stagiaire in nonInscrits %}
-            {{ stagiaire.nom }} {{ stagiaire.prenom}} <br>
-        {% endfor %}
-    </div>
-</div>
 
-    <h1>Session {{ session.nom }}</h1>
-    <table>
-        <thead>
-            <tr>
-                <th>Date de début</th>
-                <th>Date de fin</th>
-                <th>Nombre de places</th>
-                <th>Places réservées</th>
-                <th>Nombre de places restantes</th>
-            </tr>
-        </thead>
-        <tbody>
-            
-                <tr>
-                    <td>{{ session.dateDebut|date("d-m-Y") }}</td>
-                    <td>{{ session.dateFin|date("d-m-Y") }}</td>
-                    <td>{{ session.nbrePlace }}</td>
-                    <td>{{ session.getNbrePlacesReservees() }}</td>
-                    <td>{{ session.getNbrePlacesRestantes() }}</td>
+<h1>Session {{ session.nom }}</h1>
+<table>
+    <thead>
+        <tr>
+            <th>Date de début</th>
+            <th>Date de fin</th>
+            <th>Nombre de places</th>
+            <th>Places réservées</th>
+            <th>Nombre de places restantes</th>
+        </tr>
+    </thead>
+    <tbody>
+        
+        <tr>
+            <td>{{ session.dateDebut|date("d-m-Y") }}</td>
+            <td>{{ session.dateFin|date("d-m-Y") }}</td>
+            <td>{{ session.nbrePlace }}</td>
+            <td>{{ session.getNbrePlacesReservees() }}</td>
+            <td>{{ session.getNbrePlacesRestantes() }}</td>
             
         </tbody>
     </table>
 
-    <h2>Les modules disponible</h2>
-    {% for programme in session.programmes %}
-        {{ programme.module.intitulee }} dure {{ programme.nbJours }} jours <br>
-    {% endfor %}
+
+    <div class="stagiaire">
+        <div class="stagiaireInscrit">
+            <h2>La liste des stagiaires inscrits</h2>
+            {% for stagiaire in session.stagiaires %}
+                {{ stagiaire }} <br>
+            {% endfor %}
+        </div>
+        <div class="stagiaireNonInscrit">
+            <h2>La liste des non inscrit</h3>
+            {% for stagiaire in nonInscrits %}
+                {{ stagiaire.nom }} {{ stagiaire.prenom}} <br>
+            {% endfor %}
+        </div>
+    </div> <br> <br>
+
+
+    <div class="module">
+        <div class="modulePresent">
+            <h2>Les modules présent</h2>
+            {% for programme in session.programmes %}
+                {{ programme.module.intitulee }} dure {{ programme.nbJours }} jours <br>
+            {% endfor %}
+        </div>
+        <div class="moduleDispo">
+            <h2>Tout les modules disponibles</h2>
+            {% for module in moduleDispo %}
+                {{ module.intitulee}}
+            {% endfor %}
+        </div>
+    </div>
 
 
 {% endblock %}

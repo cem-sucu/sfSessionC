@@ -61,10 +61,10 @@ public function findNonInscrits($session_id)
         ->where('se.id = :id');
 
     $sub = $em->createQueryBuilder();
-    // selectionner tous les stagiaire qui ne SONT PAS (NOT IN° dans le résultat précédent)
+    // selectionner tous les stagiaire qui ne SONT PAS (NOT IN dans le résultat précédent)
     // on obtient donc les stagaiire non inscrit pour une session définie
     $sub->select('st')
-        ->from('App\Entity\stagiaire', 'st')
+        ->from('App\Entity\Stagiaire', 'st')
         ->where($sub->expr()->notIn('st.id', $qb->getDQL()))
         // requete parametré
         ->setParameter('id', $session_id)
@@ -75,4 +75,32 @@ public function findNonInscrits($session_id)
     $query = $sub->getQuery();
     return $query->getResult();
 }
+
+//AFFICHER LES MODULES DISPONIBLE MAIS NON PRESENT SUR LA SESSION
+public function findModuleDispo($session_id)
+{
+    $em = $this->getEntityManager();
+
+    // Sélectionner tous les modules d'une session dont l'ID est passé en paramètre
+    $qb = $em->createQueryBuilder();
+    $qb->select('m')
+        ->from('App\Entity\Module', 'm')
+        ->leftJoin('m.programmes', 'p')
+        ->leftJoin('p.session', 's')
+        ->where('s.id = :id');
+        
+        // Sélectionner tous les modules qui ne SONT PAS dans le résultat précédent
+        $sub = $em->createQueryBuilder();
+        $sub->select('mo')
+        ->from('App\Entity\Module', 'mo')
+        ->where($sub->expr()->notIn('mo.id', $qb->getDQL()))
+        // Trier la liste des modules par le nom
+        ->setParameter('id', $session_id);
+        $sub->orderBy('mo.intitulee');
+
+    // Renvoyer le résultat
+    $query = $sub->getQuery();
+    return $query->getResult();
+}
+
 }
