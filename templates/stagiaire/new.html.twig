@@ -2,8 +2,56 @@
 
 {% block title %}Ajout de Stagiaires{% endblock %}
 
-{% block body %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/form/form.css') }}">
+{% endblock %}
 
-    <h1>Ajouter un stagiaire</h2>
-        {{ form(formAddStagiaire)}}
+{% block body %}
+    <div class="form-container">
+        <h1>Ajouter un stagiaire</h1>
+        {# {{ form(formAddStagiaire)}} ca affiche un form de base sans css#}
+        {{ form_start(formAddStagiaire) }} <!-- permet avec form-start, form_widget et form_end à manipuler des formulaires dans les fichier Twig-->
+        
+        <div class="form-group">
+            {{ form_label(formAddStagiaire.nom) }}
+            {{ form_widget(formAddStagiaire.nom, {'attr': {'class': 'form-control'}}) }}
+        </div>
+
+        <div class="form-group">
+            {{ form_label(formAddStagiaire.prenom) }}
+            {{ form_widget(formAddStagiaire.prenom, {'attr': {'class': 'form-control'}}) }}
+        </div>
+
+        <div class="form-group">
+            {{ form_label(formAddStagiaire.dateNaissance) }}
+            {{ form_widget(formAddStagiaire.dateNaissance, {'attr': {'class': 'form-control'}}) }}
+        </div>
+
+        <div class="form-group">
+            {{ form_label(formAddStagiaire.ville) }}
+            {{ form_widget(formAddStagiaire.ville, {'attr': {'class': 'form-control'}}) }}
+        </div>
+
+        <div class="form-group">
+            {{ form_label(formAddStagiaire.email) }}
+            {{ form_widget(formAddStagiaire.email, {'attr': {'class': 'form-control'}}) }}
+        </div>
+
+        <div class="form-group">
+            {{ form_label(formAddStagiaire.telephone) }}
+            {{ form_widget(formAddStagiaire.telephone, {'attr': {'class': 'form-control'}}) }}
+        </div>
+
+        <div class="form-group">
+            {{ form_label(formAddStagiaire.sexe) }}
+            {{ form_widget(formAddStagiaire.sexe, {'attr': {'class': 'form-control'}}) }}
+        </div>
+
+        <div class="form-group">
+            {{ form_widget(formAddStagiaire.Valider, {'attr': {'class': 'submit-button'}}) }}
+        </div>
+
+        {{ form_end(formAddStagiaire) }}
+    </div>
 {% endblock %}

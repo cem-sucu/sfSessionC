@@ -4,6 +4,12 @@
 
 {% block body %}
 
+    {% for message in app.flashes('success') %}
+    <div class="success-message">
+        {{ message }}
+    </div>
+    {% endfor %}
+
     <h2>FICHE STAGIAIRE</h2> 
     {% for stagiaire in stagiaires %}
         <a href="{{ path('show_stagiaire', {'id': stagiaire.id}) }}">{{ stagiaire | raw}}</a> <br><br> <!--le filter | raw , permet de gerer les balise que l'on peut eventuellement etre amené a utiliser dans une toString par exemple-->        

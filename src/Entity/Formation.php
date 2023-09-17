@@ -54,7 +54,7 @@ class Formation
     // une ternaire : si c'est true "formation qualifiante" sinon "pas qualifiante"
     public function isQualificationTitreV(): ?string
     {
-        return $this->isQualificationTitreV ? " est une formation qualifiante" : " n'est pas qualifiante";
+        return $this->isQualificationTitreV() ? " est une formation qualifiante" : " n'est pas qualifiante";
     }
 
 
