@@ -2,15 +2,30 @@
 
 {% block title %}Détail du stagiaire{% endblock %}
 
-{% block body %}
-        <h2>Détail du stagiaire</h2>
-        {{ stagiaire.getShow() | raw}} <br> <!--le filter | raw , permet de gerer les balise que l'on peut eventuellement etre amené a utiliser dans une toString par exemple-->        
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="{{ asset('css/templateCSS/stagiaireDetails.css') }}">
+{% endblock %}
 
-        <h2>Sessions prévus</h2>
-        <ul>
-        {% for session in stagiaire.sessions %}
-        <li class="sessionPrevu">{{ session.nom}}</li>
-        {% endfor %}
-        </ul> 
+{% block body %}
+    <div class="container">
+       
+        <h2><i class="fa-regular fa-id-card"></i>Détail du stagiaire</h2>
+            <div class="containerDetails">
+                {{ stagiaire.getShow() | raw}} <br> <!--le filter | raw , permet de gerer les balise que l'on peut eventuellement etre amené a utiliser dans une toString par exemple-->        
+            </div>
+            <div class="session">
+                <h2>Sessions prévus</h2>
+                <div class="detailSession">
+                    <ul>
+                        {% for session in stagiaire.sessions %}
+                            <li class="sessionPrevu">{{ session.nom}}</li>
+                        {% endfor %}
+                    </ul> 
+                </div>
+            </div>
+        
+    </div>
 
 {% endblock %}

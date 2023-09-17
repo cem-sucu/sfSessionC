@@ -1,0 +1,22 @@
+h2{
+    font-size: 3rem;
+    color: white;
+}
+
+.container {
+    background-color: #333333;
+}
+
+.containerDetails{
+    color: #ff9900;
+    font-size: 1.4rem;
+}
+
+.detailSession{
+    color: #ff9900;
+    font-size: 1.2rem;
+}
+
+.detailSession li{
+    padding: 5px;
+}
