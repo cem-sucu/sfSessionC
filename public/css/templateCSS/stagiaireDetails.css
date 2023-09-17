@@ -2,6 +2,9 @@ h2{
     font-size: 3rem;
     color: white;
 }
+h2 i{
+    margin-right: 2rem;
+}
 
 .container {
     background-color: #333333;

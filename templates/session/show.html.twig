@@ -2,6 +2,12 @@
 
 {% block title %}Liste des Sessions{% endblock %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="{{ asset('css/templateCSS/detailsSession.css') }}">
+{% endblock %}
+
 {% block body %}
 
 
@@ -28,50 +34,51 @@
         </tbody>
     </table>
 
-
-    <div class="stagiaire">
-        <div class="stagiaireInscrit">
-          {% for message in app.flashes('success-message') %}
-            {{ message }}
-          {% endfor %}
-          {% for message in app.flashes('error-message') %}
-            {{ message }}
-          {% endfor %}
-
-            <h2>La liste des stagiaires inscrits</h2>
-            {% for stagiaire in session.stagiaires %}
-                {{ stagiaire }} <a href="{{ path('remove_stagiaire', {'session': session.id, 'stagiaire': stagiaire.id}) }}">Désinscrire</a> <br>
+    <div class="container">
+        <div class="stagiaire">
+            <div class="stagiaireInscrit">
+            {% for message in app.flashes('success-message') %}
+                <div id="success-message">{{ message }}</div>
             {% endfor %}
-        </div>
-        <div class="stagiaireNonInscrit">
-            <h2>La liste des non inscrit</h3>
-                {% if session.stagiaires | length == session.nbrePlace %}
-                    <p>Plus de place disponible</p>
-                    {% else %}
-                        {% for stagiaire in nonInscrits %}
-                            {{ stagiaire }}
-                                <a href="{{ path('add_stagiaire', {'session': session.id, 'stagiaire': stagiaire.id}) }}">
-                                    <strong>Ajouter</strong>
-                                </a> <br>
-                    {% endfor %}
-                {% endif %}
-        
-        </div>
-    </div> <br> <br>
+            {% for message in app.flashes('error-message') %}
+                {{ message }}
+            {% endfor %}
+
+                <h2>La liste des stagiaires inscrits</h2>
+                {% for stagiaire in session.stagiaires %}
+                    <li>{{ stagiaire }}<a href="{{ path('remove_stagiaire', {'session': session.id, 'stagiaire': stagiaire.id}) }}"><i class="fa-solid fa-circle-minus"></i></a></li> 
+                {% endfor %}
+            </div>
+            <div class="stagiaireNonInscrit">
+                <h2>La liste des non inscrit</h3>
+                    {% if session.stagiaires | length == session.nbrePlace %}
+                        <p id="noPlace">Plus de place disponible <i class="fa-solid fa-xmark"></i></p>
+                        {% else %}
+                            {% for stagiaire in nonInscrits %}
+                                <li>{{ stagiaire }}<a href="{{ path('add_stagiaire', {'session': session.id, 'stagiaire': stagiaire.id}) }}">
+                                        <strong><i class="fa-solid fa-circle-plus"></i></strong>
+                                    </a> </li>
+                                    
+                        {% endfor %}
+                    {% endif %}
+            
+            </div>
+        </div> 
 
 
-    <div class="module">
-        <div class="modulePresent">
-            <h2>Les modules présent</h2>
-            {% for programme in session.programmes %}
-                {{ programme.module.intitulee }} dure {{ programme.nbJours }} jours <br>
-            {% endfor %}
-        </div>
-        <div class="moduleDispo">
-            <h2>Tout les modules disponibles</h2>
-            {% for module in moduleDispo %}
-                {{ module.intitulee}} <br>
-            {% endfor %}
+        <div class="module">
+            <div class="modulePresent">
+                <h2>Les modules présent</h2>
+                {% for programme in session.programmes %}
+                    {{ programme.module.intitulee }} dure {{ programme.nbJours }} jours <br>
+                {% endfor %}
+            </div>
+            <div class="moduleDispo">
+                <h2>Tout les modules disponibles</h2>
+                {% for module in moduleDispo %}
+                    {{ module.intitulee}} <br>
+                {% endfor %}
+            </div>
         </div>
     </div>
 
