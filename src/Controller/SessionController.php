@@ -23,81 +23,54 @@ class SessionController extends AbstractController
         ]);
     }
 
-    // #[Route('/session/{id}', name: 'show_session')]
-    // public function desinscrireStagiaire(Session $session, Stagiaire $stagiaire, EntityManagerInterface $entityManager): Response
-    // {
-    //     // comme pour l'ajout je vérifie si le stagiaire est inscrit dans la session
-    //     if ($session->getStagiaires()->contains($stagiaire)) {
-    //         //sil est ionscrti dans la session je le supprimer/désinscrit
-    //         $session->removeStagiaire($stagiaire);
-    //         $entityManager->flush();
-    //         $this->addFlash('success-message', 'Vous avez bien déinscrit le/la stagiaire.');
-    //     } else {
-            
-    //     }
-
-    //     return $this->redirectToRoute('show_session', ['id' => $session->getId()]);
-    // }
-
-
-    // pour afficher la liste des nonInscrits
-    // et pour afficher les module dispo mais pas présent dans la session
-    #[Route('/session/{id}', name: 'show_session')]
-    public function show(Session $session, Request $request, EntityManagerInterface $entityManager, SessionRepository $sessionRepository): Response
+    //la methode pour ajouter un stagiaire a une session
+    #[Route('/session/add/{session}/{stagiaire}', name: 'add_stagiaire')]
+    public function addStagiaire(EntityManagerInterface $entityManager, Session $session, Stagiaire $stagiaire)
     {
-        // Vérifie si la requête est de type POST lorsque le formulaire est soumis
-        if ($request->isMethod('POST')) {
-            // Action d'ajout ou de désinscription
-            $action = $request->request->get('action'); 
-            $stagiaireId = $request->request->get('stagiaire_id');
+        if ($stagiaire && $session) {
+            $session->addStagiaire($stagiaire);
+            $entityManager->persist($session);
+            $entityManager->flush();
     
-            // si l'action est désinscrire 
-            if ($action === 'inscrire') {
-                // on recherche un stagiaire selon son id
-                $stagiaire = $entityManager->getRepository(Stagiaire::class)->find($stagiaireId);
-    
-                // si stagiaire existe et n'est pas insccrirt 
-                if ($stagiaire && !$session->getStagiaires()->contains($stagiaire)) {
-                    //on ajoute le stagiaire a la session
-                    $session->addStagiaire($stagiaire);
-                    // on enregistre dans la bdd 
-                    // on tire la chasse d'eau
-                    $entityManager->flush();
-                    $this->addFlash('success-message', 'Stagiaire ajouté à la session.');
-                } else {
-                    $this->addFlash('error-message', 'Ce stagiaire est déjà inscrit à la session ou n\'existe pas.');
-                }
-                //sinon si action = descincrire
-            } elseif ($action === 'desinscrire') {
-                // on recherche un stagiaire selon son id
-                $stagiaire = $entityManager->getRepository(Stagiaire::class)->find($stagiaireId);
-    
-                // si stagiaire est inscrit dans la session
-                if ($session->getStagiaires()->contains($stagiaire)) {
-                    // on retire le stagiaire inscrit
-                    $session->removeStagiaire($stagiaire);
-                    // et on enregistre aussi les donné en bdd
-                    // on tire la chasse d'eau
-                    $entityManager->flush();
-                    $this->addFlash('success-message', 'Stagiaire désinscrit de la session.');
-                } else {
-                    $this->addFlash('error-message', 'Ce stagiaire n\'est pas inscrit à la session.');
-                }
-            }
+            $this->addFlash('success-message', 'Stagiaire ajouté à la session.');
+        } else {
+            $this->addFlash('error-message', 'Erreur lors de l\'ajout du stagiaire à la session.');
         }
     
-        // Récupère la liste des stagiaires non inscrits à la session
-        $nonInscrits = $sessionRepository->findNonInscrits($session->getId());
-         // Récupère la liste des modules disponibles pour la session
-        $moduleDispo = $sessionRepository->findModuleDispo($session->getId());
+        return $this->redirectToRoute('show_session', ['id' =>$session->getId()]);
+    }
+
+    //la methode pour enlever un stagiaire/désinscrire d'une seesion
+    #[Route('/session/remove/{session}/{stagiaire}', name: 'remove_stagiaire')]
+    public function removeStagiaire(EntityManagerInterface $entityManager, Session $session, Stagiaire $stagiaire)
+    {
+        if ($stagiaire && $session) {
+            $session->removeStagiaire($stagiaire);
+            $entityManager->persist($session);
+            $entityManager->flush();
+
+            $this->addFlash('success-message', 'Stagiaire enlevé de la session.');
+        } else {
+            $this->addFlash('error-message', 'Erreur lors de la désinscription du stagiaire de la session.');
+        }
     
-        // return la vue session/show.html.twig
+        return $this->redirectToRoute('show_session', ['id' =>$session->getId()]);
+    }
+    
+     // pour afficher la liste des nonInscrits
+    // et pour afficher les module dispo mais pas présent dans la session
+    #[Route('/session/{id}', name: 'show_session')]
+    public function show(Session $session, SessionRepository $sr): Response
+    {
+        $nonInscrits = $sr->findNonInscrits($session->getId());
+        $moduleDispo = $sr->findModuleDispo($session->getId());
         return $this->render('session/show.html.twig', [
-            'session' => $session,
+            'session'=>$session,
             'nonInscrits' => $nonInscrits,
             'moduleDispo' => $moduleDispo,
         ]);
     }
-    
+
+
 
 }

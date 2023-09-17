@@ -28,42 +28,36 @@
         </tbody>
     </table>
 
-        {% for message in app.flashes('success-message') %}
-            <div class="success-message">
-                {{ message }}
-            </div>
-        {% endfor %}
+
     <div class="stagiaire">
         <div class="stagiaireInscrit">
+          {% for message in app.flashes('success-message') %}
+            {{ message }}
+          {% endfor %}
+          {% for message in app.flashes('error-message') %}
+            {{ message }}
+          {% endfor %}
+
             <h2>La liste des stagiaires inscrits</h2>
             {% for stagiaire in session.stagiaires %}
-                {{ stagiaire.nom }} {{ stagiaire.prenom }}
-                <form method="post" action="{{ path('show_session', { 'id': session.id }) }}">
-                    <input type="hidden" name="stagiaire_id" value="{{ stagiaire.id }}">
-                    <input type="hidden" name="action" value="desinscrire"> <!-- Champ d'action pour la désinscription -->
-                    <button type="submit">Désinscrire</button>
-                </form>
-                <br>
+                {{ stagiaire }} <a href="{{ path('remove_stagiaire', {'session': session.id, 'stagiaire': stagiaire.id}) }}">Désinscrire</a> <br>
             {% endfor %}
         </div>
         <div class="stagiaireNonInscrit">
-            <h2>La liste des non inscrits</h2>
-            {% if session.stagiaires | length == session.nbrePlace %}
-                <p>Plus de place</p>
-            {% else %}
-                {% for stagiaire in nonInscrits %}
-                    <form method="post" action="{{ path('show_session', { 'id': session.id }) }}">
-                        <input type="hidden" name="stagiaire_id" value="{{ stagiaire.id }}">
-                        <input type="hidden" name="action" value="inscrire"> <!-- Champ d'action pour l'inscription -->
-                        {{ stagiaire.nom }} {{ stagiaire.prenom }}
-                            <button type="submit">Ajouter</button>
-                    </form>
-                {% endfor %}
-            {% endif %}
-        </div>
+            <h2>La liste des non inscrit</h3>
+                {% if session.stagiaires | length == session.nbrePlace %}
+                    <p>Plus de place disponible</p>
+                    {% else %}
+                        {% for stagiaire in nonInscrits %}
+                            {{ stagiaire }}
+                                <a href="{{ path('add_stagiaire', {'session': session.id, 'stagiaire': stagiaire.id}) }}">
+                                    <strong>Ajouter</strong>
+                                </a> <br>
+                    {% endfor %}
+                {% endif %}
         
-    </div>
-     <br> <br>
+        </div>
+    </div> <br> <br>
 
 
     <div class="module">
@@ -81,6 +75,5 @@
         </div>
     </div>
 
-      
 
 {% endblock %}
