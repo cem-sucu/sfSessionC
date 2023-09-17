@@ -1,0 +1,48 @@
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+thead {
+    background-color: #333333;
+    color: #fff;
+}
+
+th {
+    padding: 10px;
+    text-align: left;
+    color: #ff9900;
+    font-size: 1.5rem;
+}
+
+tr{
+    font-weight: bold;
+    text-align: center;
+    font-size: 1.1rem;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+
+td {
+    padding: 10px;
+    border: 1px solid #ddd;
+}
+
+td a {
+    text-decoration: none;
+    color: #007bff;
+}
+
+td a i {
+    color: #333333;
+    text-decoration: none;
+    font-size: 2rem;
+}
+
+td a i:hover {
+    color: #ff9900;
+}

@@ -2,6 +2,11 @@
 
 {% block title %}Liste des Sessions{% endblock %}
 
+{% block stylesheets %}
+    {{ parent() }}
+<link rel="stylesheet" href="{{ asset('css/templateCSS/session.css') }}">
+{% endblock %}
+
 {% block body %}
     <h1>Liste des Sessions</h1>
 
