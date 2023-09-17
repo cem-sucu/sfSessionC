@@ -2,6 +2,11 @@
 
 {% block title %}Liste des Stagiaires{% endblock %}
 
+{% block stylesheets %}
+{{ parent()}}
+    <link rel="stylesheet" href="{{ asset('css/templateCSS/stagiaire.css') }}">
+{% endblock %}
+
 {% block body %}
 
     {% for message in app.flashes('success') %}
@@ -10,9 +15,13 @@
     </div>
     {% endfor %}
 
-    <h2>FICHE STAGIAIRE</h2> 
-    {% for stagiaire in stagiaires %}
-        <a href="{{ path('show_stagiaire', {'id': stagiaire.id}) }}">{{ stagiaire | raw}}</a> <br><br> <!--le filter | raw , permet de gerer les balise que l'on peut eventuellement etre amené a utiliser dans une toString par exemple-->        
-    {% endfor %}
+    <div class="container">
+        <h2>FICHE STAGIAIRE</h2>
+        <div class="containerStagiaire">
+            {% for stagiaire in stagiaires %}
+                <a href="{{ path('show_stagiaire', {'id': stagiaire.id}) }}">{{ stagiaire | raw}}</a> <!--le filter | raw , permet de gerer les balise que l'on peut eventuellement etre amené a utiliser dans une toString par exemple-->        
+            {% endfor %}
+        </div>
+    </div>
 
 {% endblock %}
