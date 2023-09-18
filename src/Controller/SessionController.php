@@ -59,33 +59,21 @@ class SessionController extends AbstractController
         return $this->redirectToRoute('show_session', ['id' =>$session->getId()]);
     }
 
-
     #[Route('/session/{id}/add_module', name: 'add_module_session')]
-    public function new(Request $request, EntityManagerInterface $entityManager, Session $session, SessionRepository $sessionRepository): Response
+    public function new(Request $request, EntityManagerInterface $entityManager, Session $session, SessionRepository $sessionRepository)
     {
-        // Utilisez la méthode findModuleDispo pour récupérer les modules disponibles
-        $moduleDispo = $sessionRepository->findModuleDispo($session->getId());
-
-        // Créez un nouvel objet Programme
-        $programme = new Programme();
-
-        // Créez le formulaire en passant également la liste des modules disponibles
-        $form = $this->createForm(ModuleSessionType::class, $programme, [
-            'module_dispo' => $moduleDispo,
-        ]);
+       $form = $this->createForm(ModuleSessionType::class);
 
         $form->handleRequest($request);
-
         // Si le formulaire est soumis et valide
         if ($form->isSubmitted() && $form->isValid()) {
+            // var_dump("form ok");die;
             $programme = $form->getData();
-            $module = $programme->getModule();
-            $session->addProgramme($programme->setModule($module));
-
-            // Persistez et flush dans la base de données
+            $session->addProgramme($programme);
+             //l'équivalent de prepare PDO
             $entityManager->persist($programme);
+            // l'équivalent du execute en PDO
             $entityManager->flush();
-
             // Ajouter un message flash
             $this->addFlash('success', 'Module bien ajouté à la session.');
 

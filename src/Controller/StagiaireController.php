@@ -23,7 +23,7 @@ class StagiaireController extends AbstractController
     }
 
 
-   // pour le fomurlaaire
+    // pour le fomurlaaire
     #[Route('/stagiaire/new', name: 'new_stagiaire')]
     //EntityManagerInterface $entityManager on le met en place pour le formulaire et on l'importe
     public function new (Request $request, EntityManagerInterface $entityManager): Response

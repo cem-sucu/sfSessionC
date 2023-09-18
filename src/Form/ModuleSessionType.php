@@ -19,7 +19,7 @@ class ModuleSessionType extends AbstractType
             ->add('session')
             ->add('nbJours', IntegerType::class, [
                 'label'=>'nombre de jours',
-                'required'=>false,
+                'required'=>true,
             ])
             ->add('module', EntityType::class, [
                 'class'=>Module::class,

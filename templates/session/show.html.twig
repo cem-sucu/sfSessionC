@@ -58,7 +58,6 @@
                                 <li>{{ stagiaire }}<a href="{{ path('add_stagiaire', {'session': session.id, 'stagiaire': stagiaire.id}) }}">
                                         <strong><i class="fa-solid fa-circle-plus"></i></strong>
                                     </a> </li>
-                                    
                         {% endfor %}
                     {% endif %}
             </div>
@@ -78,17 +77,14 @@
                     {{ module.intitulee}} <br>
                 {% endfor %}
             </div>
-
-            {{ form_start(formAddModule, {'attr': {'action': path(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')), 'method': 'POST'}}) }}
+                 {{ form_start(formAddModule, {'attr': {'action': path('add_module_session', {'id': session.id}), 'method': 'POST'}}) }}  
             {{ form_row(formAddModule.session) }}
             {{ form_row(formAddModule.nbJours) }}
             {{ form_row(formAddModule.module) }}
-            {{ form_end(formAddModule) }}     
-    
+            {{ form_end(formAddModule) }}
         </div>    
+        {{ dump(formAddModule) }}
     </div>
-
-
-
+      
 
 {% endblock %}
