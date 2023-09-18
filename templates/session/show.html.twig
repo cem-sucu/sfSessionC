@@ -71,7 +71,8 @@
                 {% endfor %}
                 <h2>Les modules présent</h2>
                 {% for programme in session.programmes %}
-                    {{ programme.module.intitulee }} dure {{ programme.nbJours }} jours <br>
+                    <li>{{ programme.module.intitulee }} dure {{ programme.nbJours }} jours<a href="{{ path('remove_module_session', {'id': session.id, 'programme': programme.id}) }}">
+                        <i class="fa-solid fa-circle-minus"></i></li></a>
                 {% endfor %}
             </div>
             <div class="moduleDispo">

@@ -85,6 +85,15 @@ a i {
     flex-direction: column;
 }
 
+.modulePresent a i {
+    text-decoration: none;
+    color: white;
+}
+.modulePresent a i:hover {
+    text-decoration: none;
+    color: #ff9900;
+}
+
 #success-message{
     color: white;
     background-color: #12ad12;

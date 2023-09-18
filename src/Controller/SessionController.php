@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Module;
 use App\Entity\Session;
 use App\Entity\Programme;
 use App\Entity\Stagiaire;
@@ -59,8 +60,25 @@ class SessionController extends AbstractController
         return $this->redirectToRoute('show_session', ['id' =>$session->getId()]);
     }
 
+    //supprimer des module d'une session défini
+    #[Route('/session/{id}/remove_module/{programme}', name: 'remove_module_session')]
+    public function removeModule( EntityManagerInterface $entityManager, Session $session, Programme $programme)
+    {
+        if ($session && $programme){
+            $session->removeProgramme($programme);
+            $entityManager->persist($session);
+            $entityManager->flush();
+
+            $this->addFlash('success-module', 'Module enlevé de la session.');
+        } else {
+            $this->addFlash('error-module', 'Erreur lors de la suppresion du Module de la session.');
+        }
+        return $this->redirectToRoute('show_session', ['id' => $session->getId()]);
+    }
+
+    //ajouter des module dans une session
     #[Route('/session/{id}/add_module', name: 'add_module_session')]
-    public function new(Request $request, EntityManagerInterface $entityManager, Session $session, SessionRepository $sessionRepository)
+    public function new(Request $request, EntityManagerInterface $entityManager, Session $session)
     {
        $form = $this->createForm(ModuleSessionType::class);
 
