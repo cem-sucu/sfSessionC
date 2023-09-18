@@ -91,6 +91,12 @@ a i {
     border-radius: 5px;
     text-align: center;
 }
+#success-module{
+    color: white;
+    background-color: #12ad12;
+    border-radius: 5px;
+    text-align: center;  
+}
 .error-message{
     color: white;
     background-color: #7c0707;

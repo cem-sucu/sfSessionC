@@ -16,7 +16,7 @@ class ModuleSessionType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('session')
+            // ->add('session')
             ->add('nbJours', IntegerType::class, [
                 'label'=>'nombre de jours',
                 'required'=>true,

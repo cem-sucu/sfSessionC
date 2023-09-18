@@ -75,7 +75,7 @@ class SessionController extends AbstractController
             // l'équivalent du execute en PDO
             $entityManager->flush();
             // Ajouter un message flash
-            $this->addFlash('success', 'Module bien ajouté à la session.');
+            $this->addFlash('success-module', 'Module bien ajouté à la session.');
 
             return $this->redirectToRoute('show_session', ['id' => $session->getId()]);
         }

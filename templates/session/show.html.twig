@@ -66,24 +66,30 @@
 
         <div class="module">
             <div class="modulePresent">
+                {% for message in app.flashes('success-module') %}
+                    <div id="success-module">{{ message }}</div>
+                {% endfor %}
                 <h2>Les modules présent</h2>
                 {% for programme in session.programmes %}
                     {{ programme.module.intitulee }} dure {{ programme.nbJours }} jours <br>
                 {% endfor %}
             </div>
             <div class="moduleDispo">
-                <h2>Tout les modules disponibles</h2>
+                <h2>Modules disponibles</h2>
                 {% for module in moduleDispo %}
                     {{ module.intitulee}} <br>
                 {% endfor %}
             </div>
+            <div class="ajoutModule">
+                <h2>Ajouter des modules</h2>
                  {{ form_start(formAddModule, {'attr': {'action': path('add_module_session', {'id': session.id}), 'method': 'POST'}}) }}  
-            {{ form_row(formAddModule.session) }}
-            {{ form_row(formAddModule.nbJours) }}
-            {{ form_row(formAddModule.module) }}
-            {{ form_end(formAddModule) }}
+                {# {{ form_row(formAddModule.session) }} #}
+                {{ form_row(formAddModule.module) }}
+                {{ form_row(formAddModule.nbJours) }}
+                {{ form_end(formAddModule) }}
+            </div>
         </div>    
-        {{ dump(formAddModule) }}
+        {# {{ dump(formAddModule) }} #}
     </div>
       
 
