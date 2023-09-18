@@ -174,9 +174,10 @@ class Session
         return $this;
     }
 
-    // public function __toString(){
-    //     return "La formation <td>".$this->nom."</td> (".$this->nbrePlace." places max, débutera du :".$this->getDateDebutFr() ." au ".$this->getDateFinFr();
-    // }
+    public function __toString(): string
+    {
+        return $this->nom;
+    }
 
     // pour l'afficher en tableau
     public function toArray()

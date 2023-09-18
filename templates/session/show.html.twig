@@ -61,7 +61,6 @@
                                     
                         {% endfor %}
                     {% endif %}
-            
             </div>
         </div> 
 
@@ -79,8 +78,17 @@
                     {{ module.intitulee}} <br>
                 {% endfor %}
             </div>
-        </div>
+
+            {{ form_start(formAddModule, {'attr': {'action': path(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')), 'method': 'POST'}}) }}
+            {{ form_row(formAddModule.session) }}
+            {{ form_row(formAddModule.nbJours) }}
+            {{ form_row(formAddModule.module) }}
+            {{ form_end(formAddModule) }}     
+    
+        </div>    
     </div>
+
+
 
 
 {% endblock %}

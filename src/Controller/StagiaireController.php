@@ -23,7 +23,7 @@ class StagiaireController extends AbstractController
     }
 
 
-   // pour le fomurlaire
+   // pour le fomurlaaire
     #[Route('/stagiaire/new', name: 'new_stagiaire')]
     //EntityManagerInterface $entityManager on le met en place pour le formulaire et on l'importe
     public function new (Request $request, EntityManagerInterface $entityManager): Response
@@ -31,7 +31,6 @@ class StagiaireController extends AbstractController
         $stagiaire = new Stagiaire();
         $form = $this->createForm(StagiaireType::class, $stagiaire);
         $form->handleRequest($request);
-
         //si formulaire soumis est valide
         if ($form->isSubmitted() && $form->isValid()) {
             $stagiaire = $form->getData();
@@ -49,7 +48,7 @@ class StagiaireController extends AbstractController
         ]);
     }
 
-    //placer la route ID toujours a la fin
+    //il faut qu'on place la route ID toujours a la fin sinon sa creer des erreur
     #[Route('/stagiaire/{id}', name: 'show_stagiaire')]
     public function show(Stagiaire $stagiaire): Response
     {
