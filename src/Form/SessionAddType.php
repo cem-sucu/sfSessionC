@@ -20,8 +20,12 @@ class SessionAddType extends AbstractType
                 'label'=> 'nombre de place',
                 'required'=> 'true',
             ])
-            ->add('dateDebut', DateType::class)
-            ->add('dateFin', DateType::class)
+            ->add('dateDebut', DateType::class,[
+                'widget'=> 'single_text',
+            ])
+            ->add('dateFin', DateType::class,[
+                'widget'=> 'single_text',
+            ])
             ->add('nom', TextType::class)
             ->add('formation')
             // ->add('stagiaires')
