@@ -2,6 +2,11 @@
 
 {% block title %}Liste des modules{% endblock %}
 
+{% block stylesheets %}
+    {{ parent() }}
+<link rel="stylesheet" href="{{ asset('css/templateCSS/module/index.css') }}">
+{% endblock %}
+
 {% block body %}
 
 <div class="module"> 
@@ -12,11 +17,20 @@
     {% endfor %}   
     <h1>Liste des modules</h1> <a href="{{ path('create_module') }}">Creer un nouveau module</a>
 </div>
-
-
-    <ul>
-        {% for module in modules %}
-            <li>{{ module.intitulee }} - {{ module.detailsProgramme }}</li>
-        {% endfor %}
-    </ul>
+    <table>
+        <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Détails programme</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for module in modules %}
+            <tr>
+                <td>{{ module.intitulee }}</td>
+                <td>{{ module.detailsProgramme }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 {% endblock %}
