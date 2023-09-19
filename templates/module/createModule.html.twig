@@ -2,17 +2,29 @@
 
 {% block title %}Creation de module{% endblock %}
 
+
 {% block stylesheets %}
-{{ parent()}}
-  
+    {{ parent()}}
+    <link rel="stylesheet" href="{{ asset('css/form/formCreeModule.css') }}">
 {% endblock %}
 
 {% block body %}
 
-    <h1>Créer un nouveau module</h1>
+    <div class="form-container">
+        <h1>Créer un nouveau module</h1>
+        {{ form_start(formCreateModule.intitulee) }}
 
-        {{ form_start(formCreateModule) }}
-        {{ form_widget(formCreateModule) }}
-        {{ form_end(formCreateModule) }}
+        <div class="form-group">
+            {{ form_label(formCreateModule.intitulee) }}
+            {{ form_widget(formCreateModule.intitulee, { 'attr': {'class': 'form-control'}})}}
+        </div>
+        <div class="form-group">
+            {{ form_label(formCreateModule.detailsProgramme) }}
+            {{ form_widget(formCreateModule.detailsProgramme, {'attr': {'class': 'form-control'}}) }}
+        </div>
+        <div class="form-group">
+            {{ form_widget(formCreateModule.Valider, {'attr': {'class': 'submit-button'}}) }}
+        </div>
+    </div>
 
 {% endblock %}
