@@ -1,6 +1,25 @@
 h1{
     text-align: center;
 }
+.title{
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+}
+
+.title a {
+    text-decoration: none;
+    color: white;
+    padding: .6rem;
+    border-radius: 5px;
+    background-color: #007bff;
+}
+.title a:hover{
+    color: #007bff;
+    background-color: white;
+    border: 1px solid #007bff;
+}
+
 table {
     width: 100%;
     border-collapse: collapse;
@@ -48,4 +67,12 @@ td a i {
 
 td a i:hover {
     color: #ff9900;
+}
+
+.succes-addSession{
+    color: white;
+    background-color: #12ad12;
+    font-size: 1.5rem;
+    border-radius: 5px;
+    text-align: center;
 }

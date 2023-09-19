@@ -6,6 +6,7 @@ use App\Entity\Module;
 use App\Entity\Session;
 use App\Entity\Programme;
 use App\Entity\Stagiaire;
+use App\Form\SessionAddType;
 use App\Form\ModuleSessionType;
 use App\Repository\SessionRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -74,6 +75,29 @@ class SessionController extends AbstractController
             $this->addFlash('error-module', 'Erreur lors de la suppresion du Module de la session.');
         }
         return $this->redirectToRoute('show_session', ['id' => $session->getId()]);
+    }
+
+    //methode pour ajouter une nouvelle session
+    #[Route('/session/add_session', name:'add_session')]
+    public function addSession(EntityManagerInterface $entityManager, Request $request )
+    {
+        $session = new Session();
+        $form = $this->createForm(SessionAddType::class, $session);
+        $form->handleRequest($request);
+        //si form est soumis
+        if($form->isSubmitted() && $form->isValid()){
+            $session = $form->getData();
+            //l'équivalent de prepare en PDO
+            $entityManager->persist($session);
+            // l'équivalent de execute en PDO
+            $entityManager->flush();
+            //message de succes
+            $this->addFlash('succes-addSession', 'une nouvelle session a bien été ajouté');
+            return $this->redirectToRoute('app_session');
+        }
+        return $this->render('session/addSession.html.twig', [
+            'formAddSession'=>$form,
+        ]);
     }
 
     //ajouter des module dans une session

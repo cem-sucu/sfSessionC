@@ -8,7 +8,15 @@
 {% endblock %}
 
 {% block body %}
-    <h1>Liste des Sessions</h1>
+
+{% for message in app.flashes('succes-addSession') %}
+        <div class="succes-addSession">
+            {{ message }}
+        </div>
+        {% endfor %}
+    <div class="title">
+        <h1>Liste des Sessions</h1> <a href="{{ path('add_session')}}">ajouter une session</a>
+    </div> 
 
     <table>
         <thead>

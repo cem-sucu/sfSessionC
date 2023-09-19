@@ -41,7 +41,8 @@
 }
 
 .submit-button:hover {
-    background-color: #ff9900; 
+    color: #007bff;
+    background-color: white; 
 }
 
 /* messages erreur */
