@@ -117,3 +117,19 @@ a i {
     color: #d41b1b;
     font-size: 1.5rem;
 }
+
+.creatModule a{
+    text-decoration: none;
+    color: white;
+    display: flex;
+    flex-direction: row;
+    padding: .6rem;
+    border-radius: 5px;
+    background-color: #007bff;
+    justify-content: center;
+}
+
+.creatModule a:hover{
+    color: #007bff;
+    background-color: white;
+}

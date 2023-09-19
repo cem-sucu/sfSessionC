@@ -14,6 +14,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Form\ModuleAddType;
 
 class SessionController extends AbstractController
 {
@@ -77,14 +78,14 @@ class SessionController extends AbstractController
         return $this->redirectToRoute('show_session', ['id' => $session->getId()]);
     }
 
-    //methode pour ajouter une nouvelle session
+    //methode pour créée une nouvelle session
     #[Route('/session/add_session', name:'add_session')]
     public function addSession(EntityManagerInterface $entityManager, Request $request )
     {
         $session = new Session();
         $form = $this->createForm(SessionAddType::class, $session);
         $form->handleRequest($request);
-        //si form est soumis
+        //si form est soumis et valide
         if($form->isSubmitted() && $form->isValid()){
             $session = $form->getData();
             //l'équivalent de prepare en PDO
@@ -122,8 +123,8 @@ class SessionController extends AbstractController
             return $this->redirectToRoute('show_session', ['id' => $session->getId()]);
         }
 
-        return $this->render('session/show.html.twig', [
-            'formAddModule' => $form->createView(),
+        return $this->render('session/createModule.html.twig', [
+            'formAddModule' => $form,
         ]);
     }
 

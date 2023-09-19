@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Creation de module{% endblock %}
+
+{% block stylesheets %}
+{{ parent()}}
+  
+{% endblock %}
+
+{% block body %}
+
+    <h1>Créer un nouveau module</h1>
+
+        {{ form_start(formCreateModule) }}
+        {{ form_widget(formCreateModule) }}
+        {{ form_end(formCreateModule) }}
+
+{% endblock %}
