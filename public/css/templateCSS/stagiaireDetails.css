@@ -23,3 +23,23 @@ h2 i{
 .detailSession li{
     padding: 5px;
 }
+
+.updateButton a i{
+    text-decoration: none;
+    color: aliceblue;
+    font-size: 1rem;
+    margin-top:2rem;
+    text-transform: lowercase;
+}
+
+.updateButton a i:hover{
+    color: #ff9900;
+}
+
+.succes-update{
+    color: white;
+    background-color: #12ad12;
+    font-size: 1.5rem;
+    border-radius: 5px;
+    text-align: center;
+}

@@ -48,6 +48,25 @@ class StagiaireController extends AbstractController
         ]);
     }
 
+    //la methode pour modifier un stagiaire inscrit
+    #[Route('/stagiaire/{id}/update', name: 'update_stagiaire')]
+    public function udpateStagiaire(Request $request, EntityManagerInterface $entityManager ,Stagiaire $stagiaire) : Response
+    {
+        $form = $this->createForm(StagiaireType::class, $stagiaire);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->flush();
+            $this->addFlash('succes-update', 'Stagiaire modifié');
+
+            return $this->redirectToRoute('show_stagiaire', ['id' => $stagiaire->getId()]);
+        }
+        return $this->render('stagiaire/update.html.twig', [
+            'formUpdateStagiaire' => $form,
+        ]);
+    }
+
+
     //il faut qu'on place la route ID toujours a la fin sinon sa creer des erreur
     #[Route('/stagiaire/{id}', name: 'show_stagiaire')]
     public function show(Stagiaire $stagiaire): Response

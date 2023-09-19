@@ -10,10 +10,19 @@
 
 {% block body %}
     <div class="container">
-       
+        {% for message in app.flashes('succes-update') %}
+        <div class="succes-update">
+            {{ message }}
+        </div>
+        {% endfor %}
         <h2><i class="fa-regular fa-id-card"></i>Détail du stagiaire</h2>
             <div class="containerDetails">
-                {{ stagiaire.getShow() | raw}} <br> <!--le filter | raw , permet de gerer les balise que l'on peut eventuellement etre amené a utiliser dans une toString par exemple-->        
+                <!--le filter | raw , permet de gerer les balise que l'on peut eventuellement etre amené a utiliser dans une toString par exemple-->
+                {{ stagiaire.getShow() | raw}} <br>
+                <!-- je dirige vers la page updtate.html.twig-->
+                <div class="updateButton">
+                    <a href="{{ path('update_stagiaire', {'id': stagiaire.id}) }}"><i class="fa-solid fa-pen-to-square"> modifier</i></a>      
+                </div>
             </div>
             <div class="session">
                 <h2>Sessions prévus</h2>
@@ -24,8 +33,7 @@
                         {% endfor %}
                     </ul> 
                 </div>
-            </div>
-        
+            </div>        
     </div>
 
 {% endblock %}

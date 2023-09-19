@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des Stagiaires{% endblock %}
+
+{% block stylesheets %}
+{{ parent()}}
+  
+{% endblock %}
+
+{% block body %}
+
+    <h1>Modifier le stagiaire</h1>
+
+    {{ form_start(formUpdateStagiaire) }}
+    {{ form_widget(formUpdateStagiaire) }}
+    {{ form_end(formUpdateStagiaire) }}
+
+{% endblock %}
