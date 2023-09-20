@@ -1,3 +1,43 @@
+h2 {
+    color: #ff9900;
+    text-align: center;
+}
+
+.containerStagiaire {
+    background-color: #333333;
+    display: flex;
+    padding: 20px;
+    margin: 1px 0;
+    justify-content: space-between;
+    font-size: 1.3rem;
+    padding-left: 6rem;
+    padding-right: 6rem;
+    margin-left: 30rem;
+    margin-right: 30rem;
+}
+
+.containerStagiaire .stagiaire {
+    text-decoration: none;
+    color: #ff9900;
+    font-weight: bold;
+}
+.containerStagiaire .stagiaire:hover {
+    text-decoration: none;
+    color: white;
+}
+
+.containerStagiaire .delete {
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    color: white;
+    font-size: 1.6rem;
+}
+.containerStagiaire .delete:hover{
+    color: rgb(212, 44, 44);
+}
+
 .success-message{
     background-color: rgb(13 117 13);
     color: white;
@@ -5,31 +45,10 @@
     text-align: center;
 }
 
-h2{
-    color: #ff9900;
+.success-remove-stagiaire{
+    color: white;
+    background-color: #12ad12;
+    font-size: 1.5rem;
+    border-radius: 5px;
     text-align: center;
-}
-
-.container {
-    background-color: #333333;
-    display: flex;
-    flex-direction: column; 
-    justify-content: center; 
-    align-items: center; 
-    margin-top: 1rem;
-}
-
-.containerStagiaire {
-    text-align: center;
-}
-
-.containerStagiaire a {
-    text-decoration: none;
-    color: aliceblue;
-    display: block; 
-    margin-bottom: 20px; 
-}
-
-.containerStagiaire a:hover {
-    color: #ff9900;
 }

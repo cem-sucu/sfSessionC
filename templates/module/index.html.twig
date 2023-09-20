@@ -22,6 +22,7 @@
             <tr>
                 <th>Nom</th>
                 <th>Détails programme</th>
+                <th>Supprimer</th>
             </tr>
         </thead>
         <tbody>
@@ -29,6 +30,8 @@
             <tr>
                 <td>{{ module.intitulee }}</td>
                 <td>{{ module.detailsProgramme }}</td>
+                <td><a class="remove" href="{{ path('remove_module', {'id': module.id}) }}"><i class="fa-solid fa-delete-left"></i></a>
+                </td>
             </tr>
             {% endfor %}
         </tbody>

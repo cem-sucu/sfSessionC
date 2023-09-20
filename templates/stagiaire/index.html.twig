@@ -9,19 +9,23 @@
 
 {% block body %}
 
+    {# messazge pour l'ajout d'un stgaiire #}
     {% for message in app.flashes('success') %}
-    <div class="success-message">
-        {{ message }}
-    </div>
+    <div class="success-message"> {{ message }} </div>
     {% endfor %}
 
-    <div class="container">
-        <h2>FICHE STAGIAIRE</h2>
-        <div class="containerStagiaire">
-            {% for stagiaire in stagiaires %}
-                <a href="{{ path('show_stagiaire', {'id': stagiaire.id}) }}">{{ stagiaire | raw}}</a> <!--le filter | raw , permet de gerer les balise que l'on peut eventuellement etre amené a utiliser dans une toString par exemple-->        
-            {% endfor %}
-        </div>
-    </div>
+    {# message pour la bonne suppresion d'un stagiaire#}
+    {% for message in app.flashes('success-remove-stagiaire') %}
+    <div class="success-remove-stagiaire"> {{ message }} </div>
+    {% endfor %}
+
+        <h2>LES STAGIAIRES</h2>
+        {% for stagiaire in stagiaires %}
+            <div class="containerStagiaire">
+                <a class="stagiaire" href="{{ path('show_stagiaire', {'id': stagiaire.id}) }}">{{ stagiaire}}</a>
+                <a class="delete" href="{{ path('remove_stagiaire', {'id': stagiaire.id}) }}"><i class="fa-solid fa-delete-left"></i></a>
+            </div>
+        {% endfor %}
+
 
 {% endblock %}

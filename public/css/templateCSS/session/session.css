@@ -68,6 +68,9 @@ td a i {
 td a i:hover {
     color: #ff9900;
 }
+.remove i:hover{
+    color: rgb(212, 44, 44);
+}
 
 .succes-addSession{
     color: white;

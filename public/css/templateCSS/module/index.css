@@ -57,12 +57,12 @@ td a {
     color: #007bff;
 }
 
-td a i {
+.remove i {
     color: #333333;
     text-decoration: none;
     font-size: 2rem;
 }
 
-td a i:hover {
-    color: #ff9900;
+.remove i:hover{
+    color: rgb(212, 44, 44); 
 }

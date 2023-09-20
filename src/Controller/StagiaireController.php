@@ -66,6 +66,28 @@ class StagiaireController extends AbstractController
         ]);
     }
 
+    //la méthode pour supprimer/delete un stagiaire
+    #[Route('/stagiaire/{id}/remove_stagiaire', name: 'remove_stagiaire')]
+    public function removeStagiaire(EntityManagerInterface $entityManager, Request $request, int $id)
+    {
+        $stagiaire = $entityManager->getRepository(Stagiaire::class)->find($id);
+
+        if ($stagiaire) {
+            // on supprime le stagiaire de toutes les sessions auxquelles il est associé sinon cela genere des erreur
+            foreach ($stagiaire->getSessions() as $session) {
+                $session->removeStagiaire($stagiaire);
+            }
+            $entityManager->remove($stagiaire);
+            $entityManager->flush();
+            $this->addFlash('success-remove-stagiaire', 'Stagiaire supprimé');
+        } else {
+            $this->addFlash('error-remove-stagiaire', 'Stagiaire introuvable');
+        }
+
+        return $this->redirectToRoute('app_stagiaire');
+    }
+
+
 
     //il faut qu'on place la route ID toujours a la fin sinon sa creer des erreur
     #[Route('/stagiaire/{id}', name: 'show_stagiaire')]
