@@ -78,7 +78,7 @@
             <div class="moduleDispo">
                 <h2>Modules disponibles</h2>
                 {% for module in moduleDispo %}
-                    {{ module.intitulee}} <br>
+                    <li>{{ module.intitulee}} <a href="{{ path('add_module_from_session', {'session': session.id, 'module': module.id})}}"><i class="fa-solid fa-circle-plus"></i></a> </li>
                 {% endfor %}
             </div>
             <div class="ajoutModule">

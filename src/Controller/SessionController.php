@@ -45,6 +45,22 @@ class SessionController extends AbstractController
         return $this->redirectToRoute('show_session', ['id' =>$session->getId()]);
     }
 
+    //la méthode pour ajouter un module a ue session
+    #[Route('/session/add/{session}/{module}', name: 'add_module_from_session')]
+    public function addModuleSession(EntityManagerInterface $entityManager, Session $session, Programme $programme, Request $request)
+    {
+        if($programme && $session) {
+            $session->addProgramme($programme);
+            $entityManager->persist($session);
+            $entityManager->flush();
+
+         $this->addFlash('success-message-moduleSession', 'Module ajouté à la session.');
+    } else {
+        $this->addFlash('error-message-moduleSession', 'Erreur lors de l\'ajout du module à la session.');
+    }
+
+    return $this->redirectToRoute('show_session', ['id' =>$session->getId()]);
+    }
 
     //la methode pour enlever un stagiaire/désinscrire d'une seesion
     #[Route('/session/remove/{session}/{stagiaire}', name: 'remove_stagiaire_from_session')]
@@ -67,8 +83,8 @@ class SessionController extends AbstractController
     #[Route('/session/{id}/remove_module/{programme}', name: 'remove_module_session')]
     public function removeModule( EntityManagerInterface $entityManager, Session $session, Programme $programme)
     {
-        if ($session && $programme){
-            $session->removeProgramme($programme);
+        if ($programme && $session){
+            $session->addProgramme($programme);
             $entityManager->persist($session);
             $entityManager->flush();
 
