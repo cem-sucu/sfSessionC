@@ -46,7 +46,7 @@ class SessionController extends AbstractController
     }
 
     //la methode pour enlever un stagiaire/désinscrire d'une seesion
-    #[Route('/session/remove/{session}/{stagiaire}', name: 'remove_stagiaire')]
+    #[Route('/session/remove/{session}/{stagiaire}', name: 'remove_stagiaire_from_session')]
     public function removeStagiaire(EntityManagerInterface $entityManager, Session $session, Stagiaire $stagiaire)
     {
         if ($stagiaire && $session) {

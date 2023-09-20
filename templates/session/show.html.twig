@@ -46,7 +46,7 @@
 
                 <h2>La liste des stagiaires inscrits</h2>
                 {% for stagiaire in session.stagiaires %}
-                    <li>{{ stagiaire }}<a href="{{ path('remove_stagiaire', {'session': session.id, 'stagiaire': stagiaire.id}) }}"><i class="fa-solid fa-circle-minus"></i></a></li> 
+                    <li>{{ stagiaire }}<a href="{{ path('remove_stagiaire_from_session', {'session': session.id, 'stagiaire': stagiaire.id}) }}"><i class="fa-solid fa-circle-minus"></i></a></li> 
                 {% endfor %}
             </div>
             <div class="stagiaireNonInscrit">
