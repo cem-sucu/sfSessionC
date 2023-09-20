@@ -66,3 +66,19 @@ td a {
 .remove i:hover{
     color: rgb(212, 44, 44); 
 }
+
+.succes-createModule{
+    color: white;
+    background-color: #12ad12;
+    font-size: 1.5rem;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.success-remove-module{
+    color: white;
+    background-color: #12ad12;
+    font-size: 1.5rem;
+    border-radius: 5px;
+    text-align: center;
+}
