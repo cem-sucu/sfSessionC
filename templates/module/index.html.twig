@@ -11,9 +11,14 @@
 
 <div class="module"> 
     {% for message in app.flashes('succes-createModule') %}
-    <div class="succes-createModule">
-        {{ message }}
-    </div>
+        <div class="succes-createModule">
+            {{ message }}
+        </div>
+    {% endfor %}   
+    {% for message in app.flashes('succes-createModule') %}
+        <div class="succes-createModule">
+            {{ message }}
+        </div>
     {% endfor %}   
     <h1>Liste des modules</h1> <a href="{{ path('create_module') }}">Creer un nouveau module</a>
 </div>
