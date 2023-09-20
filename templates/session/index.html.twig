@@ -8,12 +8,14 @@
 {% endblock %}
 
 {% block body %}
-
+{# message pour ajout session #}
 {% for message in app.flashes('succes-addSession') %}
-        <div class="succes-addSession">
-            {{ message }}
-        </div>
-        {% endfor %}
+        <div class="succes-addSession">{{ message }}</div>
+{% endfor %}
+{# mesage pour suppresion session #}
+{% for message in app.flashes('success-delete-session') %}
+        <div class="success-delete-session">{{ message }}</div>
+{% endfor %}
     <div class="title">
         <h1>Liste des Sessions</h1> <a href="{{ path('add_session')}}">Ajouter une session <i class="fa-solid fa-circle-plus"></i></a>
     </div> 
@@ -28,6 +30,7 @@
                 <th>Places réservées</th>
                 <th>Nombre de places restantes</th>
                 <th>Détails programme</th>
+                <th>Supprimer</th>
             </tr>
         </thead>
         <tbody>
@@ -40,6 +43,8 @@
                     <td>{{ session.getNbrePlacesReservees() }}</td>
                     <td>{{ session.getNbrePlacesRestantes() }}</td>
                     <td><a href="{{ path('show_session', {'id':session.id})}}"><i class="fa-regular fa-rectangle-list"></a></i></td>
+                    <td><a href="{{ path('remove_session', {'id': session.id}) }}">Supprimer</a></td>
+
                 </tr>
             {% endfor %}
         </tbody>

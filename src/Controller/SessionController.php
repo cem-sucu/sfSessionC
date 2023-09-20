@@ -101,6 +101,27 @@ class SessionController extends AbstractController
         ]);
     }
 
+    // methode pour delete une session
+    #[Route('/session/{id}/remove_session/', name: 'remove_session')]
+    public function removeSession(EntityManagerInterface $entityManager, Request $request, Session $session)
+    {
+        //on récup la formation à partir de la session
+        $formation = $session->getFormation();
+        //je vérifie si la forma tion ou session est null
+        if ($formation || $session) {
+            $formation->removeSession($session);
+            // Et on eregistre les modifications avec flush()
+            $entityManager->flush();
+            $this->addFlash('success-delete-session', 'Session supprimée du programme.');
+        } else {   
+            //si l'une des deux est null donc cela generera une err
+            $this->addFlash('error-delete-session', 'Erreur lors de la suppression de la session.');
+            return $this->redirectToRoute('app_session');
+        }
+        return $this->redirectToRoute('app_session', ['id' => $session->getId()]);
+    }
+
+
     //ajouter des module dans une session
     #[Route('/session/{id}/add_module', name: 'add_module_session')]
     public function new(Request $request, EntityManagerInterface $entityManager, Session $session)

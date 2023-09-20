@@ -76,3 +76,11 @@ td a i:hover {
     border-radius: 5px;
     text-align: center;
 }
+
+.success-delete-session{
+    color: white;
+    background-color: #12ad12;
+    font-size: 1.5rem;
+    border-radius: 5px;
+    text-align: center;
+}
