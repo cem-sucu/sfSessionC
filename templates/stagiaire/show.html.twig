@@ -29,7 +29,7 @@
                 <div class="detailSession">
                     <ul>
                         {% for session in stagiaire.sessions %}
-                            <li class="sessionPrevu">{{ session.nom}}</li>
+                            <li class="sessionPrevu"><a href="{{ path('show_session', {'id': session.id}) }}">{{ session.nom}}</a></li>
                         {% endfor %}
                     </ul> 
                 </div>

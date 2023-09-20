@@ -9,19 +9,23 @@
 
 {% block body %}
 
-    {# messazge pour l'ajout d'un stgaiire #}
-    {% for message in app.flashes('success') %}
-    <div class="success-message"> {{ message }} </div>
-    {% endfor %}
+{# messazge pour l'ajout d'un stgaiire #}
+{% for message in app.flashes('success') %}
+<div class="success-message"> {{ message }} </div>
+{% endfor %}
 
-    {# message pour la bonne suppresion d'un stagiaire#}
-    {% for message in app.flashes('success-remove-stagiaire') %}
-    <div class="success-remove-stagiaire"> {{ message }} </div>
-    {% endfor %}
+{# message pour la bonne suppresion d'un stagiaire#}
+{% for message in app.flashes('success-remove-stagiaire') %}
+<div class="success-remove-stagiaire"> {{ message }} </div>
+{% endfor %}
 
+    <div class="title">
         <h2>LES STAGIAIRES</h2>
+        <a class="createLink" href="{{ path('new_stagiaire') }}">Ajouter stagiaire</a>
+    </div>
         {% for stagiaire in stagiaires %}
             <div class="containerStagiaire">
+
                 <a class="stagiaire" href="{{ path('show_stagiaire', {'id': stagiaire.id}) }}">{{ stagiaire}}</a>
                 <a class="delete" href="{{ path('remove_stagiaire', {'id': stagiaire.id}) }}"><i class="fa-solid fa-delete-left"></i></a>
             </div>

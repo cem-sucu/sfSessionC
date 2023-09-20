@@ -1,6 +1,25 @@
 h2 {
-    color: #ff9900;
+    color: #333333;
     text-align: center;
+}
+
+.title{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: baseline;
+}
+.createLink{
+    text-decoration: none;
+    color: white;
+    padding: .6rem;
+    border-radius: 5px;
+    background-color: #007bff;
+}
+.createLink:hover {
+    color: #007bff;
+    background-color: white;
+    border: 1px solid #007bff;
 }
 
 .containerStagiaire {

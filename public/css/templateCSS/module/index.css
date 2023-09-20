@@ -1,3 +1,7 @@
+h1{
+    color: #333333;
+}
+
 .module{
     display: flex;
     flex-direction: row;
