@@ -47,9 +47,14 @@
 }
 
 @media (max-width: 768px) {
+    h1{
+        font-size: 1.7rem;
+    }
+
     .form-container {
-        max-width: 100%; 
-        padding: 200px; 
+        max-width: 85%; 
+        margin-top: 2rem;
+        padding: 16px; 
         bottom: auto; 
     }
 
@@ -58,6 +63,6 @@
     }
 
     .form-control {
-        padding: 10px; 
+        padding: 3px; 
     }
 }

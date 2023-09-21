@@ -8,11 +8,6 @@
 {% endblock %}
 
 {% block body %}
-
-<div class="module"> 
-    <h1>Liste des modules</h1> <a href="{{ path('create_module') }}">Creer un nouveau module</a>
-</div>
-
 {# message de creation #}
 {% for message in app.flashes('succes-createModule') %}
     <div class="succes-createModule">
@@ -26,6 +21,12 @@
         {{ message }}
     </div>
 {% endfor %} 
+
+<div class="module"> 
+    <h1>Liste des modules</h1> <a href="{{ path('create_module') }}">Creer un nouveau module</a>
+</div>
+
+
   
     <table>
         <thead>
