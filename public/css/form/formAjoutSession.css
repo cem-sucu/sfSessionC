@@ -45,3 +45,25 @@
     color: #007bff;
     background-color: white; 
 }
+
+
+@media (max-width: 768px) {
+    h1{
+        font-size: 1.7rem;
+    }
+
+    .form-container {
+        max-width: 85%; 
+        margin-top: 2rem;
+        padding: 16px; 
+        bottom: auto; 
+    }
+
+    .form-group {
+        margin-bottom: 10px; 
+    }
+
+    .form-control {
+        padding: 3px; 
+    }
+}

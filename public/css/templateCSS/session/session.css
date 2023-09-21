@@ -88,3 +88,42 @@ td a i:hover {
     border-radius: 5px;
     text-align: center;
 }
+
+
+/* Styles pour écrans mobile */
+@media (max-width: 768px) {
+    h1{
+        font-size: 2rem;
+    }
+
+    .title {
+        align-items: center;
+    }
+
+    .title a {
+        margin-top: 10px;
+        font-size: 1rem;
+    }
+
+    table {
+        font-size: 1.1rem; 
+    }
+
+    th{
+        font-size: 1rem;
+    }
+    
+    td{
+
+    }
+
+    th,
+    td {
+        padding: 9px; 
+    }
+
+    .success-message-session,
+    .error-message-session {
+        font-size: 1rem; 
+    }
+}
