@@ -133,3 +133,11 @@ a i {
     color: #007bff;
     background-color: white;
 }
+
+/* partie respnosive mobile */
+
+@media (max-width: 768px) {
+    h1{
+        font-size: 1.6rem;
+    }
+}

@@ -24,3 +24,11 @@
 .navbar-link:hover {
     color: #ff9900; 
 }
+
+/* pour ecran mobile */
+@media (max-width: 768px) {
+    .navbar-link {
+        font-size: 21px;
+    }
+   
+}
