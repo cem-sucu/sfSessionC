@@ -45,22 +45,23 @@ class SessionController extends AbstractController
         return $this->redirectToRoute('show_session', ['id' =>$session->getId()]);
     }
 
-    //la méthode pour ajouter un module a ue session
-    #[Route('/session/add/{session}/{module}', name: 'add_module_from_session')]
-    public function addModuleSession(EntityManagerInterface $entityManager, Session $session, Programme $programme, Request $request)
-    {
-        if($programme && $session) {
-            $session->addProgramme($programme);
-            $entityManager->persist($session);
-            $entityManager->flush();
+    //la méthode pour ajouter un module disponible a ue session
+    // j'ai f'ai une erreur dans la relation c'ess pas ManyToOne mais OneToMany, mickael ma it de laisser, a voir plustard, sinon code juste
+    // #[Route('/session/{id}/add_module_session/{programme}', name: 'add_module_from_session')]
+    // public function addModuleSession(EntityManagerInterface $entityManager, Session $session, Programme $programme)
+    // {
+    //     if($programme && $session) {
+    //         $session->addProgramme($programme);
+    //         $entityManager->persist($session);
+    //         $entityManager->flush();
 
-         $this->addFlash('success-message-moduleSession', 'Module ajouté à la session.');
-    } else {
-        $this->addFlash('error-message-moduleSession', 'Erreur lors de l\'ajout du module à la session.');
-    }
+    //      $this->addFlash('success-message-moduleSession', 'Module ajouté à la session.');
+    // } else {
+    //     $this->addFlash('error-message-moduleSession', 'Erreur lors de l\'ajout du module à la session.');
+    // }
 
-    return $this->redirectToRoute('show_session', ['id' =>$session->getId()]);
-    }
+    // return $this->redirectToRoute('show_session', ['id' =>$session->getId()]);
+    // }
 
     //la methode pour enlever un stagiaire/désinscrire d'une seesion
     #[Route('/session/remove/{session}/{stagiaire}', name: 'remove_stagiaire_from_session')]
@@ -84,7 +85,7 @@ class SessionController extends AbstractController
     public function removeModule( EntityManagerInterface $entityManager, Session $session, Programme $programme)
     {
         if ($programme && $session){
-            $session->addProgramme($programme);
+            $session->removeProgramme($programme);
             $entityManager->persist($session);
             $entityManager->flush();
 

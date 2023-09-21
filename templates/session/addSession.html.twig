@@ -3,16 +3,40 @@
 {% block title %}Ajouter une nouvelle session{% endblock %}
 
 {% block stylesheets %}
-{{ parent()}}
-    
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/form/formAjoutSession.css') }}">
 {% endblock %}
 
 {% block body %}
 
-    <h1>Ajouter une nouvelle session</h1>
-        {{ form_start(formAddSession) }}
-        {{ form_widget(formAddSession) }}
-        {{ form_end(formAddSession) }}
+    <div class="form-container">
+        <h1>Créer un nouveau module</h1>
+        {{ form_start(formAddSession.nbrePlace) }}
 
+        <div class="form-group">
+            {{ form_label(formAddSession.nbrePlace) }}
+            {{ form_widget(formAddSession.nbrePlace, { 'attr': {'class': 'form-control'}})}}
+        </div>
+        <div class="form-group">
+            {{ form_label(formAddSession.dateDebut) }}
+            {{ form_widget(formAddSession.dateDebut, {'attr': {'class': 'form-control'}}) }}
+        </div>
+        <div class="form-group">
+            {{ form_label(formAddSession.dateFin) }}
+            {{ form_widget(formAddSession.dateFin, {'attr': {'class': 'form-control'}}) }}
+        </div>
+        <div class="form-group">
+            {{ form_label(formAddSession.nom) }}
+            {{ form_widget(formAddSession.nom, {'attr': {'class': 'form-control'}}) }}
+        </div>
+        <div class="form-group">
+            {{ form_label(formAddSession.formation) }}
+            {{ form_widget(formAddSession.formation, {'attr': {'class': 'form-control'}}) }}
+        </div>
+        <div class="form-group">
+            {{ form_widget(formAddSession.Valider, {'attr': {'class': 'submit-button'}}) }}
+        </div>
+        {{ form_end(formAddSession) }}
+    </div>
 
 {% endblock %}

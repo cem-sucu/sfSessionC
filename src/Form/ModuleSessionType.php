@@ -27,8 +27,7 @@ class ModuleSessionType extends AbstractType
                 'placeholder'=> 'Selectionné unn Module',
                 'required'=>true,
             ])
-            ->add('Valider', SubmitType::class)
-        ;
+            ->add('Valider', SubmitType::class);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

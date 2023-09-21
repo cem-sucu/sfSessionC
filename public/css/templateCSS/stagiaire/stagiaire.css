@@ -26,13 +26,8 @@ h2 {
     background-color: #333333;
     display: flex;
     padding: 20px;
-    margin: 1px 0;
     justify-content: space-between;
     font-size: 1.3rem;
-    padding-left: 6rem;
-    padding-right: 6rem;
-    margin-left: 30rem;
-    margin-right: 30rem;
 }
 
 .containerStagiaire .stagiaire {

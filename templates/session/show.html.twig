@@ -32,7 +32,7 @@
             <td>{{ session.getNbrePlacesRestantes() }}</td>
             
         </tbody>
-    </table>
+</table>
 
     <div class="container">
         <div class="stagiaire">
@@ -69,6 +69,9 @@
                 {% for message in app.flashes('success-module') %}
                     <div id="success-module">{{ message }}</div>
                 {% endfor %}
+                {% for message in app.flashes('success-message-moduleSession') %}
+                    <div id="success-message-moduleSession">{{ message }}</div>
+                {% endfor %}
                 <h2>Les modules présent</h2>
                 {% for programme in session.programmes %}
                     <li>{{ programme.module.intitulee }} dure {{ programme.nbJours }} jours<a href="{{ path('remove_module_session', {'id': session.id, 'programme': programme.id}) }}">
@@ -78,7 +81,7 @@
             <div class="moduleDispo">
                 <h2>Modules disponibles</h2>
                 {% for module in moduleDispo %}
-                    <li>{{ module.intitulee}} <a href="{{ path('add_module_from_session', {'session': session.id, 'module': module.id})}}"><i class="fa-solid fa-circle-plus"></i></a> </li>
+                    <li>{{ module.intitulee}}</li>
                 {% endfor %}
             </div>
             <div class="ajoutModule">

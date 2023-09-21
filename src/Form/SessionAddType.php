@@ -17,20 +17,21 @@ class SessionAddType extends AbstractType
     {
         $builder
             ->add('nbrePlace', IntegerType::class, [
-                'label'=> 'nombre de place',
+                'label'=> 'Nombre de place',
                 'required'=> 'true',
             ])
             ->add('dateDebut', DateType::class,[
+                'label' => 'Date de début',
                 'widget'=> 'single_text',
             ])
             ->add('dateFin', DateType::class,[
+                'label' => 'Date de fin',
                 'widget'=> 'single_text',
             ])
             ->add('nom', TextType::class)
             ->add('formation')
             // ->add('stagiaires')
-            ->add('Valider', SubmitType::class)
-        ;
+            ->add('Valider', SubmitType::class);
     }
 
     public function configureOptions(OptionsResolver $resolver): void
