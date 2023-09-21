@@ -34,15 +34,28 @@
         </tbody>
 </table>
 
+{# message ajout et suppresion stagiaire #}
+{% for message in app.flashes('success-message') %}
+    <div id="success-message">{{ message }}</div>
+{% endfor %}
+
+{% for message in app.flashes('error-message') %}
+    {{ message }}
+{% endfor %}      
+
+{# message ajout et suppresion module #}
+{% for message in app.flashes('success-module') %}
+    <div id="success-module">{{ message }}</div>
+{% endfor %}
+
+{% for message in app.flashes('success-message-moduleSession') %}
+    <div id="success-message-moduleSession">{{ message }}</div>
+{% endfor %}
+
+
     <div class="container">
         <div class="stagiaire">
             <div class="stagiaireInscrit">
-            {% for message in app.flashes('success-message') %}
-                <div id="success-message">{{ message }}</div>
-            {% endfor %}
-            {% for message in app.flashes('error-message') %}
-                {{ message }}
-            {% endfor %}
 
                 <h2>La liste des stagiaires inscrits</h2>
                 {% for stagiaire in session.stagiaires %}
@@ -66,12 +79,7 @@
 
         <div class="module">
             <div class="modulePresent">
-                {% for message in app.flashes('success-module') %}
-                    <div id="success-module">{{ message }}</div>
-                {% endfor %}
-                {% for message in app.flashes('success-message-moduleSession') %}
-                    <div id="success-message-moduleSession">{{ message }}</div>
-                {% endfor %}
+          
                 <h2>Les modules présent</h2>
                 {% for programme in session.programmes %}
                     <li>{{ programme.module.intitulee }} dure {{ programme.nbJours }} jours<a href="{{ path('remove_module_session', {'id': session.id, 'programme': programme.id}) }}">

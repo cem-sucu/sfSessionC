@@ -96,13 +96,13 @@ a i {
 
 #success-message{
     color: white;
-    background-color: #12ad12;
+    background-color: rgb(13 117 13);
     border-radius: 5px;
     text-align: center;
 }
 #success-module{
     color: white;
-    background-color: #12ad12;
+    background-color: rgb(13 117 13);
     border-radius: 5px;
     text-align: center;  
 }
@@ -137,7 +137,24 @@ a i {
 /* partie respnosive mobile */
 
 @media (max-width: 768px) {
-    h1{
-        font-size: 1.6rem;
+    h1, h2, a i{
+        font-size: 1.1rem;
     }
+    li{
+        font-size: 1rem;
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: nowrap;
+        align-items: center;
+    }
+
+    .module{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr); 
+        grid-gap: 10px; 
+    }
+    .moduleDispo{
+        text-align: center;
+    }
+  
 }

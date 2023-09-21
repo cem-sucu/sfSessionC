@@ -73,7 +73,7 @@ td a {
 
 .succes-createModule{
     color: white;
-    background-color: #12ad12;
+    background-color: rgb(13 117 13);
     font-size: 1.5rem;
     border-radius: 5px;
     text-align: center;
@@ -81,7 +81,7 @@ td a {
 
 .success-remove-module{
     color: white;
-    background-color: #12ad12;
+    background-color: rgb(13 117 13);
     font-size: 1.5rem;
     border-radius: 5px;
     text-align: center;

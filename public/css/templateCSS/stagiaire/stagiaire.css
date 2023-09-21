@@ -61,8 +61,8 @@ h2 {
 
 .success-remove-stagiaire{
     color: white;
-    background-color: #12ad12;
-    font-size: 1.5rem;
+    background-color: rgb(13 117 13);
+    font-size: 1.3rem;
     border-radius: 5px;
     text-align: center;
 }

@@ -4,15 +4,56 @@
 
 {% block stylesheets %}
 {{ parent()}}
-  
+<link rel="stylesheet" href="{{ asset('css/form/formMofierStagiaire.css') }}">
 {% endblock %}
 
 {% block body %}
 
-    <h1>Modifier le stagiaire</h1>
+    <div class="form-container">
+        <h1>Modifier le stagiaire</h1>
+        {# {{ form(formUpdateStagiaire)}} ca affiche un form de base sans css#}
+        {{ form_start(formUpdateStagiaire) }} <!-- permet avec form-start, form_widget et form_end à manipuler des formulaires dans les fichier Twig-->
+        
+        <div class="form-group">
+            {{ form_label(formUpdateStagiaire.nom) }}
+            {{ form_widget(formUpdateStagiaire.nom, {'attr': {'class': 'form-control'}}) }}
+        </div>
 
-    {{ form_start(formUpdateStagiaire) }}
-    {{ form_widget(formUpdateStagiaire) }}
-    {{ form_end(formUpdateStagiaire) }}
+        <div class="form-group">
+            {{ form_label(formUpdateStagiaire.prenom) }}
+            {{ form_widget(formUpdateStagiaire.prenom, {'attr': {'class': 'form-control'}}) }}
+        </div>
+
+        <div class="form-group">
+            {{ form_label(formUpdateStagiaire.dateNaissance) }}
+            {{ form_widget(formUpdateStagiaire.dateNaissance, {'attr': {'class': 'form-control'}}) }}
+        </div>
+
+        <div class="form-group">
+            {{ form_label(formUpdateStagiaire.ville) }}
+            {{ form_widget(formUpdateStagiaire.ville, {'attr': {'class': 'form-control'}}) }}
+        </div>
+
+        <div class="form-group">
+            {{ form_label(formUpdateStagiaire.email) }}
+            {{ form_widget(formUpdateStagiaire.email, {'attr': {'class': 'form-control'}}) }}
+        </div>
+
+        <div class="form-group">
+            {{ form_label(formUpdateStagiaire.telephone) }}
+            {{ form_widget(formUpdateStagiaire.telephone, {'attr': {'class': 'form-control'}}) }}
+        </div>
+
+        <div class="form-group">
+            {{ form_label(formUpdateStagiaire.sexe) }}
+            {{ form_widget(formUpdateStagiaire.sexe, {'attr': {'class': 'form-control'}}) }}
+        </div>
+
+        <div class="form-group">
+            {{ form_widget(formUpdateStagiaire.Valider, {'attr': {'class': 'submit-button'}}) }}
+        </div>
+
+        {{ form_end(formUpdateStagiaire) }}
+    </div>
 
 {% endblock %}

@@ -75,7 +75,7 @@ td a i:hover {
 
 .succes-addSession{
     color: white;
-    background-color: #12ad12;
+    background-color: rgb(13 117 13);
     font-size: 1.5rem;
     border-radius: 5px;
     text-align: center;
@@ -83,7 +83,7 @@ td a i:hover {
 
 .success-delete-session{
     color: white;
-    background-color: #12ad12;
+    background-color: rgb(13 117 13);
     font-size: 1.5rem;
     border-radius: 5px;
     text-align: center;
@@ -112,7 +112,7 @@ td a i:hover {
     th{
         font-size: 1rem;
     }
-    
+
     th,
     td {
         padding: 9px; 

@@ -28,7 +28,7 @@
 /* pour ecran mobile */
 @media (max-width: 768px) {
     .navbar-link {
-        font-size: 21px;
+        font-size: 18px;
     }
    
 }
