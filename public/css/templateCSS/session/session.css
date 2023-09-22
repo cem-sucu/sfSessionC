@@ -93,7 +93,7 @@ td a i:hover {
 /* Styles pour écrans mobile */
 @media (max-width: 768px) {
     h1{
-        font-size: 2rem;
+        font-size: 1rem;
     }
 
     .title {
